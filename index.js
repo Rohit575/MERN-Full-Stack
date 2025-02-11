@@ -4,7 +4,7 @@ import { connectDb } from "./Helper/connect.db.helper.js";
 import swaggerui from "swagger-ui-express";
 // import * as swaggerDoc from "../Server/Config/swagger.json";
 //import assert from "assert";
-import swaggerDocument from "./Config/swagger.jsons" with { type: "json" };
+import swaggerDocument from "./Config/swagger.json" with { type: "json" };
 
 dotenv.config();
 const port = process.env.PORT;
