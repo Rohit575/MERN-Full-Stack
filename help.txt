@@ -23,3 +23,11 @@ app.listen(port, () => {
 });
 
 ------- Basic SetUp End -------------
+
+------- Swagger SetUp Start ---------
+
+swagger-jsdoc
+swagger-ui-dist
+swagger-ui-express
+
+------- Swagger SetUp End ---------
