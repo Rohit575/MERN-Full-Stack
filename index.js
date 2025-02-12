@@ -17,7 +17,7 @@ app.get("/", (req, res) => {
 
 // Swagger Start
 
-app.use("/api-docs", swaggerui.serve, swaggerui.setup(swaggerDocument, CSS_URL));
+app.use("/api-docs", swaggerui.serve, swaggerui.setup(swaggerDocument, { customCssUrl: CSS_URL }));
 
 // Swagger End
 
