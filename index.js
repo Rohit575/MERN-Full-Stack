@@ -2,8 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import { connectDb } from "./Helper/connect.db.helper.js";
 import swaggerui from "swagger-ui-express";
-// import * as swaggerDoc from "../Server/Config/swagger.json";
-//import assert from "assert";
+import {  SwaggerUIBundle,  SwaggerUIStandalonePreset,} from "swagger-ui-dist";
 import swaggerDocument from "./Config/swagger.json" with { type: "json" };
 
 dotenv.config();
