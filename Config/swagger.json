@@ -15,8 +15,107 @@
       "description": "Production server"
     }
   ],
-  "tags": [],
-  "paths": {},
+  "tags": [
+    {
+      "name": "Auth",
+      "description": "Authentication related endpoints"
+    }
+  ],
+  "paths": {
+    "/register": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "Register a new user",
+        "description": "Registers a new user by providing name, email, and password.",
+        "requestBody": {
+          "description": "User registration data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterUser"
+              },
+              "example": {
+                "name": "John Doe",
+                "email": "john.doe@example.com",
+                "password": "securePassword123"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "User registered successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "user": {
+                      "$ref": "#/components/schemas/User"
+                    },
+                    "token": {
+                      "type": "string",
+                      "description": "JWT token for authentication"
+                    }
+                  }
+                },
+                "example": {
+                  "user": {
+                    "name": "John Doe",
+                    "email": "john.doe@example.com",
+                    "profilePic": {
+                      "url": "https://res.cloudinary.com/ds0f6df5e/image/upload/v1739354541/default_image_grdcyn.webp",
+                      "public_id": null
+                    },
+                    "createdAt": "2025-02-12T12:00:00Z",
+                    "updatedAt": "2025-02-12T12:00:00Z"
+                  },
+                  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request - Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "error": "Email already exists"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "error": "Something went wrong"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
   "components": {
     "securitySchemes": {
       "JWTAuth": {
@@ -30,27 +129,51 @@
       "User": {
         "type": "object",
         "properties": {
-          "firstName": { "type": "string" },
-          "lastName": { "type": "string" },
-          "email": { "type": "string" },
-          "phone": { "type": "integer" },
-          "address": { "type": "string" },
-          "state": { "type": "string" },
-          "country": { "type": "string" },
-          "pinCode": { "type": "integer" },
-          "isAdmin": {
-            "type": "string",
-            "enum": ["admin", "user"],
-            "default": "user"
+          "name": {
+            "type": "string"
           },
-          "profileImage": {
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "profilePic": {
             "type": "object",
             "properties": {
-              "imageUrl": { "type": "string" },
-              "imgPublicId": { "type": "string" }
+              "url": {
+                "type": "string"
+              },
+              "public_id": {
+                "type": "string",
+                "nullable": true
+              }
             }
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
           }
         }
+      },
+      "RegisterUser": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "password": {
+            "type": "string",
+            "minLength": 6
+          }
+        },
+        "required": ["name", "email", "password"]
       }
     }
   }
