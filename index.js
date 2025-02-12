@@ -8,6 +8,8 @@ import swaggerDocument from "./Config/swagger.json" with { type: "json" };
 dotenv.config();
 const port = process.env.PORT;
 
+const CSS_URL = "https://unpkg.com/swagger-ui-dist/swagger-ui.css";
+
 const app = express();
 app.get("/", (req, res) => {
   res.send("API is working");
@@ -15,7 +17,7 @@ app.get("/", (req, res) => {
 
 // Swagger Start
 
-app.use("/api-docs", swaggerui.serve, swaggerui.setup(swaggerDocument));
+app.use("/api-docs", swaggerui.serve, swaggerui.setup(swaggerDocument, CSS_URL));
 
 // Swagger End
 
