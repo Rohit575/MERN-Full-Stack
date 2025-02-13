@@ -114,6 +114,98 @@
           }
         }
       }
+    },
+    "/login": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "Login a user",
+        "description": "Logs in a user by validating email and password.",
+        "requestBody": {
+          "description": "User login credentials",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginUser"
+              },
+              "example": {
+                "email": "pramod123@gmail.com",
+                "password": "Pramod@123"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "User logged in successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "user": {
+                      "$ref": "#/components/schemas/User"
+                    },
+                    "token": {
+                      "type": "string",
+                      "description": "JWT token for authentication"
+                    }
+                  }
+                },
+                "example": {
+                  "user": {
+                    "name": "Pramod",
+                    "email": "pramod123@gmail.com",
+                    "profilePic": {
+                      "url": "https://res.cloudinary.com/ds0f6df5e/image/upload/v1739354541/default_image_grdcyn.webp",
+                      "public_id": null
+                    },
+                    "createdAt": "2025-02-12T12:00:00Z",
+                    "updatedAt": "2025-02-12T12:00:00Z"
+                  },
+                  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request - Invalid credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "error": "Invalid email or password"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "error": "Something went wrong"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -174,6 +266,20 @@
           }
         },
         "required": ["name", "email", "password"]
+      },
+      "LoginUser": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "password": {
+            "type": "string",
+            "minLength": 6
+          }
+        },
+        "required": ["email", "password"]
       }
     }
   }
