@@ -1,0 +1,16 @@
+------- Basic setup --------
+Create folders: 
+Components -- Navbar folder - Navbar.jsx and styles.js
+Pages -- Home folder - Home.jsx and styles.js, Login folder - Login.jsx and styles.js
+Utils
+
+Install Packages:
+
+npm install react-router-dom
+
+shortcut to create snippet
+rafce
+
+root file will be app.jsx
+whenever you are using custom tags start with the capital letter.
+Outlet for the common files
