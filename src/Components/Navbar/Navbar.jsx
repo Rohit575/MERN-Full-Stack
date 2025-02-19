@@ -1,13 +1,21 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import "./NavbarStyles.css";
+import DesktopNav from "./DesktopNav/DesktopNav";
+import MobileNav from "./MobileNav/MobileNav";
+import { styles } from "./styles";
 
 const Navbar = () => {
   return (
-    <div className="navbarContainer">
-      Navbar
+    <styles.NavWrapper>
+      <styles.DesktopNavWrapper>
+        <DesktopNav />
+      </styles.DesktopNavWrapper>
+      <styles.MobileNavWrapper>
+        <MobileNav />
+      </styles.MobileNavWrapper>
       <Outlet />
-    </div>
+    </styles.NavWrapper>
   );
 };
 
