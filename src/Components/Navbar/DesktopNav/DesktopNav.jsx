@@ -8,6 +8,9 @@ const DesktopNav = () => {
       <styles.MenuIcon>
         <styles.anchorTag href="/">Home</styles.anchorTag>
       </styles.MenuIcon>
+      <styles.MenuIcon>
+        <styles.anchorTag href="/">Contact-Us</styles.anchorTag>
+      </styles.MenuIcon>
     </styles.NavContainer>
   );
 };
