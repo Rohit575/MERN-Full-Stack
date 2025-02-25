@@ -40,7 +40,7 @@ export const styles = {
   LeftImage: styled("img")`
     width: 100%;
   `,
-  formContainer: styled("div")`
+  formContainer: styled("form")`
     border: 1px solid black;
     border-radius: 5px;
     width: 100%;
