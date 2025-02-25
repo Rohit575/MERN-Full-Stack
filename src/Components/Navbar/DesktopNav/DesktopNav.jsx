@@ -9,7 +9,7 @@ const DesktopNav = () => {
         <styles.anchorTag href="/">Home</styles.anchorTag>
       </styles.MenuIcon>
       <styles.MenuIcon>
-        <styles.anchorTag href="/register">Contact-Us</styles.anchorTag>
+        <styles.anchorTag href="/contact-us">Contact-Us</styles.anchorTag>
       </styles.MenuIcon>
     </styles.NavContainer>
   );

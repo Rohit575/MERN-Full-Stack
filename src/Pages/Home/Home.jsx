@@ -3,15 +3,7 @@ import React from "react";
 import { styles } from "./styles";
 
 const Home = () => {
-  return (
-    <styles.homeContainer>
-      <a href="/">Home</a>
-      <br />
-      <a href="/register">Register</a>
-      <br />
-      <a href="/login">Login</a>
-    </styles.homeContainer>
-  );
+  return <styles.homeContainer>Home</styles.homeContainer>;
 };
 
 export default Home;
