@@ -19,6 +19,9 @@ export const styles = {
     @media (768px < width <= 1024px) {
       width: 70%;
     }
+    @media (425px < width <= 768px) {
+      width: 65%;
+    }
   `,
   MenuIcon: styled("div")`
     /* background-color: yellow; */

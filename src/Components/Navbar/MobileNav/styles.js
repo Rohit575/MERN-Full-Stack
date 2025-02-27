@@ -23,7 +23,7 @@ export const styles = {
     align-items: center;
     gap: 20px;
     padding: 20px;
-    right: ${({ $open }) => ($open ? "0" : "-400px")};
+    right: ${({ $open }) => ($open ? "0" : "-450px")};
     transition: right 0.3s ease; /* Slide in transition */
     z-index: 999;
     /* display: ${({ $open }) => ($open ? "flex" : "none")}; */

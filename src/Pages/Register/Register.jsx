@@ -67,9 +67,12 @@
 
 import React, { useEffect } from "react";
 import { styles } from "./styles";
+import { signUp } from "../../services/api.services";
 
 const Register = () => {
+  const [loading, setLoading] = React.useState(false);
   const [errorMsg, setErrorMsg] = React.useState();
+  const [infoMsg, setinfoMsg] = React.useState();
   const [formValue, setFormValue] = React.useState({
     name: "",
     email: "",
@@ -79,9 +82,9 @@ const Register = () => {
   const handleChange = (e) => {
     setFormValue({ ...formValue, [e.target.name]: e.target.value });
   };
-  const handleSubmit = () => {
-    console.log("submitting form", formValue, formValue.name);
-
+  const handleSubmit = async () => {
+    // console.log("submitting form", formValue, formValue.name);
+    setLoading(true);
     if (formValue.name == "") {
       return setErrorMsg("Name is required");
     }
@@ -94,8 +97,13 @@ const Register = () => {
     if (formValue.confirmPassword == "") {
       return setErrorMsg("Password is required");
     } else {
-      return setErrorMsg("");
+      setErrorMsg("");
     }
+    const result = await signUp(formValue);
+    if (result.statusCode === 200) {
+      setinfoMsg(result.message);
+    }
+    setLoading(false);
   };
   return (
     <styles.outerContiner>
@@ -150,8 +158,9 @@ const Register = () => {
             />
           </styles.inputWrapper>
           <p style={{ color: "red" }}>{errorMsg}</p>
+          <p style={{ color: "green" }}>{infoMsg}</p>
           <styles.submitButton type="button" onClick={() => handleSubmit()}>
-            Register
+            {loading ? "Submitting.." : "Register"}
           </styles.submitButton>
         </styles.formContainer>
       </styles.Left>

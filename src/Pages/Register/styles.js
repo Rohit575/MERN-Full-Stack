@@ -83,5 +83,6 @@ export const styles = {
     color: white;
     font-weight: bold;
     border-radius: 5px;
+    padding: 8px;
   `,
 };
