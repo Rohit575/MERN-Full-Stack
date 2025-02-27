@@ -12,10 +12,11 @@ const port = process.env.PORT;
 const CSS_URL = "https://unpkg.com/swagger-ui-dist/swagger-ui.css";
 const app = express();
 
-app.use(cors({ origin: "*" }));
+
 // middlewares for recognising incoming request as JSON object
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors({ origin: "*" }));
 
 app.get("/", (req, res) => {
   res.send("API is working");
