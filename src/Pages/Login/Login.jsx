@@ -47,6 +47,7 @@ const Login = () => {
       <styles.rightContainer>
         <styles.cardWrapper>
           <styles.cardContent>
+            <styles.title>Login</styles.title>
             <styles.inputField
               id="outlined-basic"
               label="Email"

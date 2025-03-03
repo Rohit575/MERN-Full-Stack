@@ -6,6 +6,7 @@ import {
   InputAdornment,
   InputLabel,
   OutlinedInput,
+  Typography,
 } from "@mui/material";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -19,34 +20,59 @@ export const styles = {
     justify-content: center;
     align-items: center;
     height: calc(100vh - 70px);
+
+    @media (0 < width < 768px) {
+      flex-direction: column;
+      gap: 20px;
+    }
   `,
   cardWrapper: styled(Card)`
-    height: 500px;
+    max-height: 500px;
     width: 300px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   `,
-  cardContent: styled(CardContent)``,
+  cardContent: styled(CardContent)`
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  `,
   leftContainer: styled("div")`
     width: 50%;
-    border: 1px solid green;
+
+    @media (0 < width < 768px) {
+      width: 100%;
+    }
   `,
   rightContainer: styled("div")`
     width: 50%;
-    border: 1px solid red;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+
+    @media (0 < width < 768px) {
+      width: 100%;
+    }
   `,
   bannerImage: styled("img")`
     width: 100%;
   `,
-  inputField: styled(TextField)``,
-  formWrapper: styled(FormControl)``,
+  inputField: styled(TextField)`
+    width: 100%;
+  `,
+  formWrapper: styled(FormControl)`
+    margin: 0px;
+    width: 100%;
+  `,
   inputBox: styled(InputLabel)``,
   outlineInput: styled(OutlinedInput)``,
   inputAdornment: styled(InputAdornment)``,
   iconContainer: styled(IconButton)``,
   submitButton: styled(Button)`
     width: 100%;
+  `,
+  title: styled(Typography)`
+    text-align: center;
+    font-size: 24px;
   `,
 };
