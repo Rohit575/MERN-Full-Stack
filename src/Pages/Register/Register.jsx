@@ -68,8 +68,10 @@
 import React, { useEffect } from "react";
 import { styles } from "./styles";
 import { signUp } from "../../services/api.services";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
+  const navigate = useNavigate();
   const [loading, setLoading] = React.useState(false);
   const [errorMsg, setErrorMsg] = React.useState();
   const [infoMsg, setinfoMsg] = React.useState();
@@ -101,7 +103,11 @@ const Register = () => {
     }
     const result = await signUp(formValue);
     if (result.statusCode === 200) {
+      localStorage.setItem("user", JSON.stringify(result.data));
       setinfoMsg(result.message);
+      setTimeout(() => {
+        navigate("/");
+      }, 1000);
     }
     setLoading(false);
   };

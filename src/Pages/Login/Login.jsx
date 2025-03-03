@@ -3,12 +3,14 @@ import { styles } from "./styles";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { LoginAPI } from "../../services/api.services";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [showPassword, setShowPassword] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
   const [formData, setFromData] = React.useState({ email: "", password: "" });
   const [infoMsg, setInfoMsg] = React.useState({ color: "", msg: "" });
+  const navigate = useNavigate();
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
@@ -34,7 +36,11 @@ const Login = () => {
     }
     const result = await LoginAPI(formData);
     if (result.statusCode === 200) {
+      localStorage.setItem("user", JSON.stringify(result.data));
       setInfoMsg({ msg: result.message, color: "green" });
+      setTimeout(() => {
+        navigate("/");
+      }, 1000);
     }
     setLoading(false);
   };
